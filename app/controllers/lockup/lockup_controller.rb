@@ -5,7 +5,7 @@ module Lockup
     else
       skip_before_filter :check_for_lockup
     end
-    
+
     def unlock
       if params[:lockup_codeword].present?
         user_agent = request.env['HTTP_USER_AGENT'].downcase
@@ -36,13 +36,13 @@ module Lockup
         respond_to :html
       end
     end
-    
+
     private
-    
+
     def set_cookie
-      cookies[:lockup] = { value: @codeword.to_s.downcase, expires: (Time.now + 5.years) }
+      cookies[:lockup] = { value: @codeword.to_s.downcase, expires: (Time.now + Integer(ENV["lockup_valid_hours"]).hours) }
     end
-    
+
     def run_redirect
       if @return_to.present?
         redirect_to "#{@return_to}"
