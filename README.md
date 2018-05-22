@@ -34,7 +34,7 @@ To set a codeword, define LOCKUP_CODEWORD in your environments/your_environment.
 
 You need to set the expiration time of your cookie in hours:
 
-  ENV["LOCKUP_VALID_HOURS"] = 12
+    ENV["LOCKUP_VALID_HOURS"] = 12
 
 If you think you might need a hint:
 
