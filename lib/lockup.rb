@@ -40,4 +40,16 @@ module Lockup
       Rails.application.secrets.lockup_codeword.to_s.downcase
     end
   end
+
+  def lockup_valid_hours
+    valid_hours = nil
+    if ENV["LOCKUP_VALID_HOURS"].present?
+      valid_hours = ENV["LOCKUP_VALID_HOURS"].to_s.downcase
+    elsif ENV["lockup_valid_hours"].present?
+      valid_hours = ENV["lockup_valid_hours"].to_s.downcase
+    elsif Rails.application.respond_to?(:secrets) && Rails.application.secrets.lockup_valid_hours.present?
+      valid_hours = Rails.application.secrets.lockup_valid_hours.to_s.downcase
+    end
+    Integer(valid_hours)
+  end
 end

@@ -32,6 +32,10 @@ To set a codeword, define LOCKUP_CODEWORD in your environments/your_environment.
 
     ENV["LOCKUP_CODEWORD"] = 'secret'
 
+You need to set the expiration time of your cookie in hours:
+
+  ENV["LOCKUP_VALID_HOURS"] = 12
+
 If you think you might need a hint:
 
     ENV["LOCKUP_HINT"] = 'Something that you do not tell everyone.'
@@ -39,6 +43,8 @@ If you think you might need a hint:
 If you’re using Rails 4.1 or greater, you can add your Lockup Codeword via Rails Secrets functionality in your secrets.yml file:
 
     lockup_codeword: 'love'
+
+    lockup_valid_hours: 12
 
     lockup_hint: 'Pepé Le Pew'
 
